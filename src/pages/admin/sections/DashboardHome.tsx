@@ -56,7 +56,7 @@ export function DashboardHome() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <KpiCard label="Usuarios activos" value={kpis.activeUsers.value.toLocaleString('es-AR')} delta={kpis.activeUsers.delta} icon={Users} accent="celeste" />
-        <KpiCard label="Ingresos B2B" value={`€ ${kpis.revenueB2B.toLocaleString('es-AR')}`} delta={kpis.revenueB2B.delta} icon={DollarSign} accent="lila" />
+        <KpiCard label="Ingresos B2B" value={`€ ${kpis.revenueB2B.value.toLocaleString('es-AR')}`} delta={kpis.revenueB2B.delta} icon={DollarSign} accent="lila" />
         <KpiCard label="Alertas críticas hoy" value={String(kpis.criticalAlertsToday.value)} delta={kpis.criticalAlertsToday.delta} icon={AlertOctagon} accent="rojo" />
         <KpiCard label="Nuevos profesionales" value={String(kpis.newProfessionals.value)} delta={kpis.newProfessionals.delta} icon={UserPlus} accent="amarillo" />
       </div>
