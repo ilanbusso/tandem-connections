@@ -121,11 +121,11 @@ export function TemplatesManagement() {
           {palette.map((p) => (
             <button
               key={p.id}
-              onClick={() => addStep(p.word)}
+              onClick={() => addStep(p.name)}
               className="flex flex-col items-center gap-1 rounded-md border border-slate-200 p-2 hover:bg-slate-50"
             >
               <span className="text-2xl">{p.emoji ?? '🟦'}</span>
-              <Badge variant="secondary" className="text-[10px]">{p.word}</Badge>
+              <Badge variant="secondary" className="text-[10px]">{p.name}</Badge>
             </button>
           ))}
         </div>
