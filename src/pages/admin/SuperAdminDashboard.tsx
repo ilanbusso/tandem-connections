@@ -5,6 +5,8 @@ import { DashboardHome } from './sections/DashboardHome';
 import { DatabaseManagement } from './sections/DatabaseManagement';
 import { LiveFeed } from './sections/LiveFeed';
 import { SystemHealth } from './sections/SystemHealth';
+import { TemplatesManagement } from './sections/TemplatesManagement';
+import { AuditLogs } from './sections/AuditLogs';
 
 export default function SuperAdminDashboard() {
   const [section, setSection] = useState<AdminSection>('home');
@@ -24,6 +26,8 @@ export default function SuperAdminDashboard() {
           {section === 'home' && <DashboardHome />}
           {section === 'db' && <DatabaseManagement />}
           {section === 'live' && <LiveFeed />}
+          {section === 'templates' && <TemplatesManagement />}
+          {section === 'audit' && <AuditLogs />}
           {section === 'system' && <SystemHealth />}
         </main>
       </div>
