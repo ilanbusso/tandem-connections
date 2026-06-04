@@ -107,6 +107,10 @@ export function SystemHealth() {
         </div>
       </Card>
 
+      <div className="lg:col-span-3">
+        <FeatureFlagsCard />
+      </div>
+
       <Card className="bg-white border-slate-100 shadow-sm p-5 lg:col-span-3">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
