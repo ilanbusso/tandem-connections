@@ -4,6 +4,7 @@ import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { ProgressMetric } from '../components/ProgressMetric';
+import { FeatureFlagsCard } from '../components/FeatureFlagsCard';
 import { StatusPill } from '../components/StatusPill';
 import { integrations } from '../data/adminMock';
 import { toast } from '@/hooks/use-toast';
