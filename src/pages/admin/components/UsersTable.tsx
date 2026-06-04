@@ -25,9 +25,11 @@ export interface RowData {
 interface Props {
   rows: RowData[];
   metaColumnLabel: string;
+  onImpersonate?: (id: string) => void;
+  exportFilename?: string;
 }
 
-export function UsersTable({ rows, metaColumnLabel }: Props) {
+export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilename = 'usuarios.csv' }: Props) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [page, setPage] = useState(1);
