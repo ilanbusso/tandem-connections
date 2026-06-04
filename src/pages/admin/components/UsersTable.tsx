@@ -137,6 +137,11 @@ export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilenam
                     <DropdownMenuItem onClick={() => handleAction('Ver perfil clínico', r)}>
                       <Eye className="mr-2 h-4 w-4" /> Ver perfil clínico
                     </DropdownMenuItem>
+                    {onImpersonate && (
+                      <DropdownMenuItem onClick={() => onImpersonate(r.id)}>
+                        <LogIn className="mr-2 h-4 w-4" /> Ingresar como...
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem onClick={() => setEditing(r)}>
                       <UserCog className="mr-2 h-4 w-4" /> Editar
                     </DropdownMenuItem>
