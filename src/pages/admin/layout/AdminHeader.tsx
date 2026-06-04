@@ -2,11 +2,14 @@ import { Bell, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
 import type { AdminSection } from './AdminSidebar';
+import { BroadcastDialog } from '../components/BroadcastDialog';
 
 const titles: Record<AdminSection, { title: string; subtitle: string }> = {
   home: { title: 'Panel general', subtitle: 'Visión global de la plataforma Tándem' },
   db: { title: 'Gestión de base de datos', subtitle: 'Administración de usuarios e instituciones' },
   live: { title: 'Live Feed', subtitle: 'Eventos en tiempo real' },
+  templates: { title: 'Plantillas', subtitle: 'Rutinas base con pictogramas' },
+  audit: { title: 'Audit Logs', subtitle: 'Historial de acciones administrativas' },
   system: { title: 'System & Health', subtitle: 'Estado del backend y controles administrativos' },
 };
 
