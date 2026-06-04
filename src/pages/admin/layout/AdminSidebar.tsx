@@ -1,9 +1,9 @@
-import { LayoutDashboard, Database, Activity, Server, ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
+import { LayoutDashboard, Database, Activity, Server, ChevronLeft, ChevronRight, LogOut, LayoutTemplate, ScrollText } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 
-export type AdminSection = 'home' | 'db' | 'live' | 'system';
+export type AdminSection = 'home' | 'db' | 'live' | 'system' | 'templates' | 'audit';
 
 interface Props {
   section: AdminSection;
@@ -16,6 +16,8 @@ const items: { id: AdminSection; label: string; Icon: typeof LayoutDashboard; de
   { id: 'home', label: 'Dashboard', Icon: LayoutDashboard, desc: 'Vista general y KPIs' },
   { id: 'db', label: 'Base de datos', Icon: Database, desc: 'Gestión de usuarios' },
   { id: 'live', label: 'Live Feed', Icon: Activity, desc: 'Eventos en tiempo real' },
+  { id: 'templates', label: 'Plantillas', Icon: LayoutTemplate, desc: 'Rutinas base / pictogramas' },
+  { id: 'audit', label: 'Audit Logs', Icon: ScrollText, desc: 'Historial de admins' },
   { id: 'system', label: 'System & Health', Icon: Server, desc: 'Salud del sistema' },
 ];
 
