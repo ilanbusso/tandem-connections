@@ -4,7 +4,7 @@ export function exportRowsToCSV<T>(
   headers?: { key: keyof T; label: string }[],
 ) {
   if (!rows.length) return;
-  const cols = headers ?? (Object.keys(rows[0]) as (keyof T)[]).map((k) => ({ key: k, label: String(k) }));
+  const cols = headers ?? (Object.keys(rows[0] as object) as (keyof T)[]).map((k) => ({ key: k, label: String(k) }));
   const escape = (v: unknown) => {
     const s = v == null ? '' : String(v);
     return /[",\n;]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
