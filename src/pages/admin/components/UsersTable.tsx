@@ -7,8 +7,9 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, MoreHorizontal, ChevronLeft, ChevronRight, UserCog, KeyRound, ShieldOff, Eye } from 'lucide-react';
+import { Search, MoreHorizontal, ChevronLeft, ChevronRight, UserCog, KeyRound, ShieldOff, Eye, LogIn, Download } from 'lucide-react';
 import { StatusPill } from './StatusPill';
+import { exportRowsToCSV } from '../utils/exportCsv';
 import { UserEditDialog } from './UserEditDialog';
 import { toast } from '@/hooks/use-toast';
 
@@ -24,9 +25,11 @@ export interface RowData {
 interface Props {
   rows: RowData[];
   metaColumnLabel: string;
+  onImpersonate?: (id: string) => void;
+  exportFilename?: string;
 }
 
-export function UsersTable({ rows, metaColumnLabel }: Props) {
+export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilename = 'usuarios.csv' }: Props) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [page, setPage] = useState(1);
@@ -77,6 +80,26 @@ export function UsersTable({ rows, metaColumnLabel }: Props) {
             <SelectItem value="Pendiente">Pendiente</SelectItem>
           </SelectContent>
         </Select>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            exportRowsToCSV(
+              filtered,
+              exportFilename,
+              [
+                { key: 'id', label: 'ID' },
+                { key: 'name', label: 'Nombre' },
+                { key: 'email', label: 'Email' },
+                { key: 'meta', label: metaColumnLabel },
+                { key: 'status', label: 'Estado' },
+              ],
+            );
+            toast({ title: 'Exportación CSV', description: `${filtered.length} filas exportadas.` });
+          }}
+        >
+          <Download className="h-4 w-4 mr-1.5" /> Exportar CSV
+        </Button>
       </div>
 
       <Table>
@@ -114,6 +137,11 @@ export function UsersTable({ rows, metaColumnLabel }: Props) {
                     <DropdownMenuItem onClick={() => handleAction('Ver perfil clínico', r)}>
                       <Eye className="mr-2 h-4 w-4" /> Ver perfil clínico
                     </DropdownMenuItem>
+                    {onImpersonate && (
+                      <DropdownMenuItem onClick={() => onImpersonate(r.id)}>
+                        <LogIn className="mr-2 h-4 w-4" /> Ingresar como...
+                      </DropdownMenuItem>
+                    )}
                     <DropdownMenuItem onClick={() => setEditing(r)}>
                       <UserCog className="mr-2 h-4 w-4" /> Editar
                     </DropdownMenuItem>

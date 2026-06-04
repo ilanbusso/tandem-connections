@@ -4,6 +4,7 @@ import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { ProgressMetric } from '../components/ProgressMetric';
+import { FeatureFlagsCard } from '../components/FeatureFlagsCard';
 import { StatusPill } from '../components/StatusPill';
 import { integrations } from '../data/adminMock';
 import { toast } from '@/hooks/use-toast';
@@ -105,6 +106,10 @@ export function SystemHealth() {
           </Button>
         </div>
       </Card>
+
+      <div className="lg:col-span-3">
+        <FeatureFlagsCard />
+      </div>
 
       <Card className="bg-white border-slate-100 shadow-sm p-5 lg:col-span-3">
         <div className="flex items-center justify-between mb-3">

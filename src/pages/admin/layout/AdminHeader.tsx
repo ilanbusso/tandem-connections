@@ -2,11 +2,14 @@ import { Bell, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/contexts/AuthContext';
 import type { AdminSection } from './AdminSidebar';
+import { BroadcastDialog } from '../components/BroadcastDialog';
 
 const titles: Record<AdminSection, { title: string; subtitle: string }> = {
   home: { title: 'Panel general', subtitle: 'Visión global de la plataforma Tándem' },
   db: { title: 'Gestión de base de datos', subtitle: 'Administración de usuarios e instituciones' },
   live: { title: 'Live Feed', subtitle: 'Eventos en tiempo real' },
+  templates: { title: 'Plantillas', subtitle: 'Rutinas base con pictogramas' },
+  audit: { title: 'Audit Logs', subtitle: 'Historial de acciones administrativas' },
   system: { title: 'System & Health', subtitle: 'Estado del backend y controles administrativos' },
 };
 
@@ -26,6 +29,7 @@ export function AdminHeader({ section }: { section: AdminSection }) {
         </div>
       </div>
       <div className="ml-auto flex items-center gap-3">
+        <BroadcastDialog />
         <button className="relative h-9 w-9 rounded-lg hover:bg-slate-100 flex items-center justify-center text-slate-600">
           <Bell className="h-4 w-4" />
           <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-rose-500 ring-2 ring-white" />
