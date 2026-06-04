@@ -80,6 +80,26 @@ export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilenam
             <SelectItem value="Pendiente">Pendiente</SelectItem>
           </SelectContent>
         </Select>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => {
+            exportRowsToCSV(
+              filtered,
+              exportFilename,
+              [
+                { key: 'id', label: 'ID' },
+                { key: 'name', label: 'Nombre' },
+                { key: 'email', label: 'Email' },
+                { key: 'meta', label: metaColumnLabel },
+                { key: 'status', label: 'Estado' },
+              ],
+            );
+            toast({ title: 'Exportación CSV', description: `${filtered.length} filas exportadas.` });
+          }}
+        >
+          <Download className="h-4 w-4 mr-1.5" /> Exportar CSV
+        </Button>
       </div>
 
       <Table>
