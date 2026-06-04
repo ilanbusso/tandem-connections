@@ -7,8 +7,9 @@ import {
   DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, MoreHorizontal, ChevronLeft, ChevronRight, UserCog, KeyRound, ShieldOff, Eye } from 'lucide-react';
+import { Search, MoreHorizontal, ChevronLeft, ChevronRight, UserCog, KeyRound, ShieldOff, Eye, LogIn, Download } from 'lucide-react';
 import { StatusPill } from './StatusPill';
+import { exportRowsToCSV } from '../utils/exportCsv';
 import { UserEditDialog } from './UserEditDialog';
 import { toast } from '@/hooks/use-toast';
 
