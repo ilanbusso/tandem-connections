@@ -29,8 +29,8 @@ export function TemplatesManagement() {
   const selected = templates.find((t) => t.id === selectedId);
 
   const palette = useMemo(
-    () => (pictograms as { id: string; word: string; emoji?: string }[])
-      .filter((p) => !search || p.word.toLowerCase().includes(search.toLowerCase()))
+    () => pictograms
+      .filter((p) => !search || p.name.toLowerCase().includes(search.toLowerCase()))
       .slice(0, 24),
     [search],
   );
