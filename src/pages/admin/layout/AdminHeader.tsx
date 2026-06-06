@@ -9,6 +9,9 @@ const titles: Record<AdminSection, { title: string; subtitle: string }> = {
   db: { title: 'Gestión de base de datos', subtitle: 'Administración de usuarios e instituciones' },
   live: { title: 'Live Feed', subtitle: 'Eventos en tiempo real' },
   templates: { title: 'Plantillas', subtitle: 'Rutinas base con pictogramas' },
+  pictograms: { title: 'Catálogo de pictogramas', subtitle: 'Íconos globales para las agendas visuales' },
+  tickets: { title: 'Bandeja de tickets', subtitle: 'Reportes y soporte de usuarios' },
+  economy: { title: 'Balanceador de economía', subtitle: 'Variables globales de monedas y tienda' },
   audit: { title: 'Audit Logs', subtitle: 'Historial de acciones administrativas' },
   system: { title: 'System & Health', subtitle: 'Estado del backend y controles administrativos' },
 };
