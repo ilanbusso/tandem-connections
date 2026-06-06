@@ -7,6 +7,9 @@ import { LiveFeed } from './sections/LiveFeed';
 import { SystemHealth } from './sections/SystemHealth';
 import { TemplatesManagement } from './sections/TemplatesManagement';
 import { AuditLogs } from './sections/AuditLogs';
+import { PictogramManager } from './sections/PictogramManager';
+import { SupportTickets } from './sections/SupportTickets';
+import { EconomySettings } from './sections/EconomySettings';
 
 export default function SuperAdminDashboard() {
   const [section, setSection] = useState<AdminSection>('home');
@@ -27,6 +30,9 @@ export default function SuperAdminDashboard() {
           {section === 'db' && <DatabaseManagement />}
           {section === 'live' && <LiveFeed />}
           {section === 'templates' && <TemplatesManagement />}
+          {section === 'pictograms' && <PictogramManager />}
+          {section === 'tickets' && <SupportTickets />}
+          {section === 'economy' && <EconomySettings />}
           {section === 'audit' && <AuditLogs />}
           {section === 'system' && <SystemHealth />}
         </main>

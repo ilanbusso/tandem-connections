@@ -1,9 +1,9 @@
-import { LayoutDashboard, Database, Activity, Server, ChevronLeft, ChevronRight, LogOut, LayoutTemplate, ScrollText } from 'lucide-react';
+import { LayoutDashboard, Database, Activity, Server, ChevronLeft, ChevronRight, LogOut, LayoutTemplate, ScrollText, Images, LifeBuoy, Coins } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 
-export type AdminSection = 'home' | 'db' | 'live' | 'system' | 'templates' | 'audit';
+export type AdminSection = 'home' | 'db' | 'live' | 'system' | 'templates' | 'audit' | 'pictograms' | 'tickets' | 'economy';
 
 interface Props {
   section: AdminSection;
@@ -17,6 +17,9 @@ const items: { id: AdminSection; label: string; Icon: typeof LayoutDashboard; de
   { id: 'db', label: 'Base de datos', Icon: Database, desc: 'Gestión de usuarios' },
   { id: 'live', label: 'Live Feed', Icon: Activity, desc: 'Eventos en tiempo real' },
   { id: 'templates', label: 'Plantillas', Icon: LayoutTemplate, desc: 'Rutinas base / pictogramas' },
+  { id: 'pictograms', label: 'Pictogramas', Icon: Images, desc: 'Catálogo global de íconos' },
+  { id: 'tickets', label: 'Tickets', Icon: LifeBuoy, desc: 'Help desk de usuarios' },
+  { id: 'economy', label: 'Economía', Icon: Coins, desc: 'Balanceo de monedas y tienda' },
   { id: 'audit', label: 'Audit Logs', Icon: ScrollText, desc: 'Historial de admins' },
   { id: 'system', label: 'System & Health', Icon: Server, desc: 'Salud del sistema' },
 ];
