@@ -87,6 +87,17 @@ export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilenam
             <SelectItem value="Pendiente">Pendiente</SelectItem>
           </SelectContent>
         </Select>
+        {roleOptions && roleOptions.length > 0 && (
+          <Select value={roleFilter} onValueChange={(v) => { setRoleFilter(v); setPage(1); }}>
+            <SelectTrigger className="w-44"><SelectValue placeholder="Rol" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos los roles</SelectItem>
+              {roleOptions.map((o) => (
+                <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
         <Button
           variant="outline"
           size="sm"
