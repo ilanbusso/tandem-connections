@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UsersTable, type RowData } from '../components/UsersTable';
+import { BackupsCard } from '../components/BackupsCard';
 import { users, tutors, professionals, getUserById } from '@/data/repo';
 import { institutions } from '../data/adminMock';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from '@/hooks/use-toast';
+
 
 function deriveStatus(seed: string): RowData['status'] {
   const h = seed.charCodeAt(seed.length - 1) % 10;
