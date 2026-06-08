@@ -49,9 +49,11 @@ export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilenam
         r.email.toLowerCase().includes(search.toLowerCase()) ||
         r.meta.toLowerCase().includes(search.toLowerCase());
       const matchesStatus = statusFilter === 'all' || r.status === statusFilter;
-      return matchesSearch && matchesStatus;
+      const matchesRole = roleFilter === 'all' || !getRowRole || getRowRole(r) === roleFilter;
+      return matchesSearch && matchesStatus && matchesRole;
     });
-  }, [rows, search, statusFilter]);
+  }, [rows, search, statusFilter, roleFilter, getRowRole]);
+
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, totalPages);
