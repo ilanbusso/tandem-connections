@@ -81,11 +81,12 @@ export function SubscriptionManager() {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <KpiCard icon={Users} label="Suscriptores activos" value={premium.length.toLocaleString('es-AR')} delta={+8.4} accent="#A4DDED" />
-        <KpiCard icon={DollarSign} label="MRR estimado" value={`$ ${mrr.toLocaleString('es-AR', { maximumFractionDigits: 0 })}`} delta={+12.1} accent="#C9A7EB" />
-        <KpiCard icon={TrendingUp} label="ARPU" value={`$ ${(mrr / Math.max(1, premium.length)).toFixed(2)}`} delta={+3.6} accent="#86efac" />
-        <KpiCard icon={AlertTriangle} label="En riesgo / expirados" value={churnRisk} delta={-4.2} accent="#fca5a5" />
+        <KpiCard icon={Users} label="Suscriptores activos" value={premium.length.toLocaleString('es-AR')} delta={+8.4} accent="celeste" />
+        <KpiCard icon={DollarSign} label="MRR estimado" value={`$ ${mrr.toLocaleString('es-AR', { maximumFractionDigits: 0 })}`} delta={+12.1} accent="lila" />
+        <KpiCard icon={TrendingUp} label="ARPU" value={`$ ${(mrr / Math.max(1, premium.length)).toFixed(2)}`} delta={+3.6} accent="amarillo" />
+        <KpiCard icon={AlertTriangle} label="En riesgo / expirados" value={String(churnRisk)} delta={-4.2} accent="rojo" />
       </div>
+
 
       <Card className="bg-white border-slate-100 shadow-sm">
         <CardHeader>
