@@ -12,6 +12,8 @@ const titles: Record<AdminSection, { title: string; subtitle: string }> = {
   pictograms: { title: 'Catálogo de pictogramas', subtitle: 'Íconos globales para las agendas visuales' },
   tickets: { title: 'Bandeja de tickets', subtitle: 'Reportes y soporte de usuarios' },
   economy: { title: 'Balanceador de economía', subtitle: 'Variables globales de monedas y tienda' },
+  billing: { title: 'Gestor de suscripciones', subtitle: 'Planes, MRR y estado de facturación' },
+  roles: { title: 'Roles administrativos', subtitle: 'Equipo con acceso al Backoffice' },
   audit: { title: 'Audit Logs', subtitle: 'Historial de acciones administrativas' },
   system: { title: 'System & Health', subtitle: 'Estado del backend y controles administrativos' },
 };

@@ -1,10 +1,12 @@
 import { useMemo } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { UsersTable, type RowData } from '../components/UsersTable';
+import { BackupsCard } from '../components/BackupsCard';
 import { users, tutors, professionals, getUserById } from '@/data/repo';
 import { institutions } from '../data/adminMock';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from '@/hooks/use-toast';
+
 
 function deriveStatus(seed: string): RowData['status'] {
   const h = seed.charCodeAt(seed.length - 1) % 10;
@@ -51,18 +53,52 @@ export function DatabaseManagement() {
     })), [],
   );
 
+  // Tabla agregada con filtro de Rol (Usuario / Tutor / Profesional)
+  const allRows: RowData[] = useMemo(() => {
+    const tag = (r: RowData, role: 'Usuario' | 'Tutor' | 'Profesional'): RowData => ({
+      ...r, meta: `${role} · ${r.meta}`, metaLabel: 'Rol · detalle',
+    });
+    return [
+      ...pertRows.map((r) => tag(r, 'Usuario')),
+      ...tutorRows.map((r) => tag(r, 'Tutor')),
+      ...profRows.map((r) => tag(r, 'Profesional')),
+    ];
+  }, [pertRows, tutorRows, profRows]);
+
+  const roleOptions = [
+    { label: 'Usuario', value: 'Usuario' },
+    { label: 'Tutor', value: 'Tutor' },
+    { label: 'Profesional', value: 'Profesional' },
+  ];
+
   return (
-    <Tabs defaultValue="pert" className="space-y-4">
-      <TabsList className="bg-white border border-slate-200">
-        <TabsTrigger value="pert">Pertenecientes ({pertRows.length})</TabsTrigger>
-        <TabsTrigger value="tut">Tutores ({tutorRows.length})</TabsTrigger>
-        <TabsTrigger value="prof">Profesionales ({profRows.length})</TabsTrigger>
-        <TabsTrigger value="inst">Instituciones ({instRows.length})</TabsTrigger>
-      </TabsList>
-      <TabsContent value="pert"><UsersTable rows={pertRows} metaColumnLabel="Plan" onImpersonate={handleImpersonate} exportFilename="pertenecientes.csv" /></TabsContent>
-      <TabsContent value="tut"><UsersTable rows={tutorRows} metaColumnLabel="Relación" onImpersonate={handleImpersonate} exportFilename="tutores.csv" /></TabsContent>
-      <TabsContent value="prof"><UsersTable rows={profRows} metaColumnLabel="Especialidad" onImpersonate={handleImpersonate} exportFilename="profesionales.csv" /></TabsContent>
-      <TabsContent value="inst"><UsersTable rows={instRows} metaColumnLabel="Ubicación / Plan" exportFilename="instituciones.csv" /></TabsContent>
-    </Tabs>
+    <div className="space-y-6">
+      <Tabs defaultValue="all" className="space-y-4">
+        <TabsList className="bg-white border border-slate-200">
+          <TabsTrigger value="all">Todos ({allRows.length})</TabsTrigger>
+          <TabsTrigger value="pert">Pertenecientes ({pertRows.length})</TabsTrigger>
+          <TabsTrigger value="tut">Tutores ({tutorRows.length})</TabsTrigger>
+          <TabsTrigger value="prof">Profesionales ({profRows.length})</TabsTrigger>
+          <TabsTrigger value="inst">Instituciones ({instRows.length})</TabsTrigger>
+        </TabsList>
+        <TabsContent value="all">
+          <UsersTable
+            rows={allRows}
+            metaColumnLabel="Rol · detalle"
+            onImpersonate={handleImpersonate}
+            exportFilename="usuarios.csv"
+            roleOptions={roleOptions}
+            getRowRole={(r) => r.meta.split(' · ')[0]}
+          />
+        </TabsContent>
+        <TabsContent value="pert"><UsersTable rows={pertRows} metaColumnLabel="Plan" onImpersonate={handleImpersonate} exportFilename="pertenecientes.csv" /></TabsContent>
+        <TabsContent value="tut"><UsersTable rows={tutorRows} metaColumnLabel="Relación" onImpersonate={handleImpersonate} exportFilename="tutores.csv" /></TabsContent>
+        <TabsContent value="prof"><UsersTable rows={profRows} metaColumnLabel="Especialidad" onImpersonate={handleImpersonate} exportFilename="profesionales.csv" /></TabsContent>
+        <TabsContent value="inst"><UsersTable rows={instRows} metaColumnLabel="Ubicación / Plan" exportFilename="instituciones.csv" /></TabsContent>
+      </Tabs>
+
+      <BackupsCard />
+    </div>
   );
 }
+

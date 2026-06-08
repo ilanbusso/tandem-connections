@@ -10,6 +10,8 @@ import { AuditLogs } from './sections/AuditLogs';
 import { PictogramManager } from './sections/PictogramManager';
 import { SupportTickets } from './sections/SupportTickets';
 import { EconomySettings } from './sections/EconomySettings';
+import { SubscriptionManager } from './sections/SubscriptionManager';
+import { AdminRoles } from './sections/AdminRoles';
 
 export default function SuperAdminDashboard() {
   const [section, setSection] = useState<AdminSection>('home');
@@ -33,6 +35,8 @@ export default function SuperAdminDashboard() {
           {section === 'pictograms' && <PictogramManager />}
           {section === 'tickets' && <SupportTickets />}
           {section === 'economy' && <EconomySettings />}
+          {section === 'billing' && <SubscriptionManager />}
+          {section === 'roles' && <AdminRoles />}
           {section === 'audit' && <AuditLogs />}
           {section === 'system' && <SystemHealth />}
         </main>

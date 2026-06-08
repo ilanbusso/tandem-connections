@@ -27,14 +27,19 @@ interface Props {
   metaColumnLabel: string;
   onImpersonate?: (id: string) => void;
   exportFilename?: string;
+  /** Opcional: habilita un filtro adicional por rol/atributo derivado de la fila. */
+  roleOptions?: { label: string; value: string }[];
+  getRowRole?: (row: RowData) => string;
 }
 
-export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilename = 'usuarios.csv' }: Props) {
+export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilename = 'usuarios.csv', roleOptions, getRowRole }: Props) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [roleFilter, setRoleFilter] = useState<string>('all');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [editing, setEditing] = useState<RowData | null>(null);
+
 
   const filtered = useMemo(() => {
     return rows.filter((r) => {
@@ -44,9 +49,11 @@ export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilenam
         r.email.toLowerCase().includes(search.toLowerCase()) ||
         r.meta.toLowerCase().includes(search.toLowerCase());
       const matchesStatus = statusFilter === 'all' || r.status === statusFilter;
-      return matchesSearch && matchesStatus;
+      const matchesRole = roleFilter === 'all' || !getRowRole || getRowRole(r) === roleFilter;
+      return matchesSearch && matchesStatus && matchesRole;
     });
-  }, [rows, search, statusFilter]);
+  }, [rows, search, statusFilter, roleFilter, getRowRole]);
+
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, totalPages);
@@ -80,6 +87,17 @@ export function UsersTable({ rows, metaColumnLabel, onImpersonate, exportFilenam
             <SelectItem value="Pendiente">Pendiente</SelectItem>
           </SelectContent>
         </Select>
+        {roleOptions && roleOptions.length > 0 && (
+          <Select value={roleFilter} onValueChange={(v) => { setRoleFilter(v); setPage(1); }}>
+            <SelectTrigger className="w-44"><SelectValue placeholder="Rol" /></SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">Todos los roles</SelectItem>
+              {roleOptions.map((o) => (
+                <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
         <Button
           variant="outline"
           size="sm"

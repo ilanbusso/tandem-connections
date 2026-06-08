@@ -1,9 +1,10 @@
-import { LayoutDashboard, Database, Activity, Server, ChevronLeft, ChevronRight, LogOut, LayoutTemplate, ScrollText, Images, LifeBuoy, Coins } from 'lucide-react';
+import { LayoutDashboard, Database, Activity, Server, ChevronLeft, ChevronRight, LogOut, LayoutTemplate, ScrollText, Images, LifeBuoy, Coins, CreditCard, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 
-export type AdminSection = 'home' | 'db' | 'live' | 'system' | 'templates' | 'audit' | 'pictograms' | 'tickets' | 'economy';
+export type AdminSection = 'home' | 'db' | 'live' | 'system' | 'templates' | 'audit' | 'pictograms' | 'tickets' | 'economy' | 'billing' | 'roles';
+
 
 interface Props {
   section: AdminSection;
@@ -20,6 +21,8 @@ const items: { id: AdminSection; label: string; Icon: typeof LayoutDashboard; de
   { id: 'pictograms', label: 'Pictogramas', Icon: Images, desc: 'Catálogo global de íconos' },
   { id: 'tickets', label: 'Tickets', Icon: LifeBuoy, desc: 'Help desk de usuarios' },
   { id: 'economy', label: 'Economía', Icon: Coins, desc: 'Balanceo de monedas y tienda' },
+  { id: 'billing', label: 'Suscripciones', Icon: CreditCard, desc: 'Planes y facturación' },
+  { id: 'roles', label: 'Roles admin', Icon: ShieldCheck, desc: 'Staff y permisos' },
   { id: 'audit', label: 'Audit Logs', Icon: ScrollText, desc: 'Historial de admins' },
   { id: 'system', label: 'System & Health', Icon: Server, desc: 'Salud del sistema' },
 ];
